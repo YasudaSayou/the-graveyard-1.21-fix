@@ -1,6 +1,5 @@
 package com.finallion.graveyard.entities;
 
-import com.finallion.graveyard.init.TGAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -127,18 +126,6 @@ public abstract class HordeGraveyardEntity extends HostileGraveyardEntity {
     protected void setPatrolling(boolean p_33078_) {
         this.patrolling = p_33078_;
     }
-
-    // getKillCredit
-    @Override
-    public void createWitherRose(@Nullable LivingEntity adversary) {
-        if (adversary instanceof ServerPlayer player) {
-            if (this.patrolLeader) {
-                TGAdvancements.KILL_HORDE.get().trigger(player);
-            }
-        }
-        super.setLastHurtByMob(adversary);
-    }
-
 
     public static class LongDistancePatrolGoal<T extends HordeGraveyardEntity> extends Goal {
         private final T mob;

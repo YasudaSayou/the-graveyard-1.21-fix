@@ -9,11 +9,7 @@
     },
     "description": {
       "translate": "advancements.graveyard.craft_coffin.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "coffin": {
@@ -21,28 +17,10 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "graveyard:oak_coffin",
-              "graveyard:dark_oak_coffin",
-              "graveyard:spruce_coffin",
-              "graveyard:acacia_coffin",
-              "graveyard:birch_coffin",
-              "graveyard:jungle_coffin",
-              "graveyard:crimson_coffin",
-              "graveyard:warped_coffin",
-              "graveyard:mangrove_coffin",
-              "graveyard:bamboo_coffin",
-              "graveyard:cherry_coffin",
-              "graveyard:sarcophagus"
-            ]
+            "items": "#graveyard:coffin"
           }
         ]
       }
     }
-  },
-  "requirements": [
-    [
-      "coffin"
-    ]
-  ]
+  }
 }

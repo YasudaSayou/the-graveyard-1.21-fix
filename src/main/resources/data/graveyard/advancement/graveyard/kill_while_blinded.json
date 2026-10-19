@@ -9,20 +9,27 @@
     },
     "description": {
       "translate": "advancements.graveyard.kill_while_blinded.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "kill_while_blinded": {
-      "trigger": "graveyard:kill_while_blinded"
+      "conditions": {
+        "entity": [
+          {
+            "condition": "entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "graveyard:nightmare"
+            }
+          }
+        ],
+        "player": {
+          "effects": {
+            "minecraft:blindness": {}
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
     }
-  },
-  "requirements": [
-    [
-      "kill_while_blinded"
-    ]
-  ]
+  }
 }

@@ -5,7 +5,6 @@ import com.finallion.graveyard.entities.ai.goals.FollowOwnerGoal;
 import com.finallion.graveyard.entities.ai.goals.GhoulingMeleeAttackGoal;
 import com.finallion.graveyard.entities.ai.goals.SitGoal;
 import com.finallion.graveyard.entities.ai.goals.TrackOwnerAttackerGoal;
-import com.finallion.graveyard.init.TGAdvancements;
 import com.finallion.graveyard.init.TGBlocks;
 import com.finallion.graveyard.init.TGParticles;
 import com.finallion.graveyard.init.TGSounds;
@@ -316,7 +315,6 @@ public class GhoulingEntity extends GraveyardMinionEntity implements GeoEntity, 
                     this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(itemStack.getItem()));
                     if (inventory == null) {
                         this.playSound(SoundEvents.CHEST_CLOSE, 1.0F, -5.0F);
-                        TGAdvancements.EQUIP_COFFIN.get().trigger((ServerPlayer) player);
                         inventory = new SimpleContainer(54);
                         this.setHasCoffin(true);
                     }
@@ -487,7 +485,7 @@ public class GhoulingEntity extends GraveyardMinionEntity implements GeoEntity, 
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Ghouling");
+        return Component.translatable("entity.graveyard.ghouling");
     }
 
     @Nullable
@@ -512,6 +510,8 @@ public class GhoulingEntity extends GraveyardMinionEntity implements GeoEntity, 
         GHOULING_HOLDABLE.add(TGBlocks.MANGROVE_COFFIN.get().asItem());
         GHOULING_HOLDABLE.add(TGBlocks.WARPED_COFFIN.get().asItem());
         GHOULING_HOLDABLE.add(TGBlocks.CRIMSON_COFFIN.get().asItem());
+        GHOULING_HOLDABLE.add(TGBlocks.BAMBOO_COFFIN.get().asItem());
+        GHOULING_HOLDABLE.add(TGBlocks.CHERRY_COFFIN.get().asItem());
 
         ATTACK_ANIM_TIMER = SynchedEntityData.defineId(GhoulingEntity.class, EntityDataSerializers.INT);
         ANIMATION = SynchedEntityData.defineId(GhoulingEntity.class, EntityDataSerializers.INT);

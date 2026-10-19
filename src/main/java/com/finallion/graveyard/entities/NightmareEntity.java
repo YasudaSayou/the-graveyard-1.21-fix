@@ -1,7 +1,6 @@
 package com.finallion.graveyard.entities;
 
 import com.finallion.graveyard.entities.ai.goals.NightmareMeleeAttackGoal;
-import com.finallion.graveyard.init.TGAdvancements;
 import com.finallion.graveyard.init.TGSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -391,19 +390,6 @@ public class NightmareEntity extends HostileGraveyardEntity implements GeoEntity
             this.entityData.set(DATA_CREEPY, true);
         }
 
-    }
-
-    // getKillCredit
-
-
-    @Override
-    public void createWitherRose(@Nullable LivingEntity adversary) {
-        if (adversary instanceof ServerPlayer player) {
-            if (player.hasEffect(MobEffects.BLINDNESS)) {
-                TGAdvancements.KILL_WHILE_BLINDED.get().trigger(player);
-            }
-        }
-        super.setLastHurtByMob(adversary);
     }
 
     static class ChasePlayerGoal extends Goal {
