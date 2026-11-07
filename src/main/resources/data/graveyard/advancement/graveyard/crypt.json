@@ -9,11 +9,7 @@
     },
     "description": {
       "translate": "advancements.graveyard.crypt.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "crypt": {
@@ -32,10 +28,5 @@
       },
       "trigger": "minecraft:location"
     }
-  },
-  "requirements": [
-    [
-      "crypt"
-    ]
-  ]
+  }
 }

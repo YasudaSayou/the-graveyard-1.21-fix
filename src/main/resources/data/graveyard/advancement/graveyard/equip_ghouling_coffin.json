@@ -9,20 +9,19 @@
     },
     "description": {
       "translate": "advancements.graveyard.equip_coffin.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "equip_coffin": {
-      "trigger": "graveyard:equip_coffin"
+      "conditions": {
+        "entity": {
+          "type": "graveyard:ghouling"
+        },
+        "item": {
+          "items": "#graveyard:coffin"
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
     }
-  },
-  "requirements": [
-    [
-      "equip_coffin"
-    ]
-  ]
+  }
 }
