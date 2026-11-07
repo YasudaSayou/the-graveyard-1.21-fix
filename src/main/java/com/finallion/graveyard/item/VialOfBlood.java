@@ -42,7 +42,7 @@ public class VialOfBlood extends Item {
 
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         float blood = 0;
         CustomData customData = stack.getComponents().get(DataComponents.CUSTOM_DATA);
         if (customData != null && !customData.isEmpty()) {
@@ -50,15 +50,11 @@ public class VialOfBlood extends Item {
         }
 
         if (blood > 0.8F && blood < 0.9F) {
-            tooltipComponents.add(Component.translatable("item.graveyard.vial_of_blood.full").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("item.graveyard.vial_of_blood.level_full").withStyle(ChatFormatting.GRAY));
         } else {
-            int level = (int)(blood * 10);
-            if (level == 0) {
-                tooltipComponents.add(Component.translatable("item.graveyard.vial_of_blood.min").withStyle(ChatFormatting.GRAY));
-            } else {
-                tooltipComponents.add(Component.translatable("item.graveyard.vial_of_blood.level", level).withStyle(ChatFormatting.GRAY));
-            }
+            tooltip.add(Component.translatable("item.graveyard.vial_of_blood.level", Math.max(1, (int) (blood * 10))).withStyle(ChatFormatting.GRAY));
         }
-
+        tooltip.add(Component.translatable("item.graveyard.vial_of_blood.lore").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable("item.graveyard.vial_of_blood.hint").withStyle(ChatFormatting.DARK_GRAY));
     }
 }
