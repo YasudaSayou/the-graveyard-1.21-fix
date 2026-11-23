@@ -71,7 +71,7 @@ public class UrnBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
 
 
     @Override
-    public VoxelShape getCollisionShape(BlockState p_220071_1_, BlockGetter p_220071_2_, BlockPos p_220071_3_, CollisionContext p_220071_4_) {
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (this.asBlock().toString().contains("small")) {
             return SMALL_URN;
         }

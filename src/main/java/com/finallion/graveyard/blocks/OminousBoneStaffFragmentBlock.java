@@ -32,31 +32,31 @@ public class OminousBoneStaffFragmentBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if (world.getGameTime() % 25 == 0) { // synchronized whisper
-            world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, TGSounds.BONE_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (level.getGameTime() % 25 == 0) { // synchronized whisper
+            level.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, TGSounds.BONE_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
         }
     }
 
     @Override
-    public void setPlacedBy(Level world, BlockPos pos, BlockState p_49849_, @Nullable LivingEntity p_49850_, ItemStack p_49851_) {
-        world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, TGSounds.BONE_PLACED.get(), SoundSource.BLOCKS, 15.0F,1.5F, true);
-        super.setPlacedBy(world, pos, p_49849_, p_49850_, p_49851_);
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity living, ItemStack stack) {
+        level.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, TGSounds.BONE_PLACED.get(), SoundSource.BLOCKS, 15.0F,1.5F, true);
+        super.setPlacedBy(level, pos, state, living, stack);
     }
 
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_152840_) {
-        p_152840_.add(FACING, WATERLOGGED);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATERLOGGED);
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState p_49928_, BlockGetter p_49929_, BlockPos p_49930_) {
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
         return true;
     }
 
     @Override
-    public float getShadeBrightness(BlockState p_60472_, BlockGetter p_60473_, BlockPos p_60474_) {
+    public float getShadeBrightness(BlockState state, BlockGetter level, BlockPos pos) {
         return 1.0F;
     }
 
@@ -68,8 +68,8 @@ public class OminousBoneStaffFragmentBlock extends Block {
     }
 
 
-    public FluidState getFluidState(BlockState p_152844_) {
-        return p_152844_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_152844_);
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override

@@ -36,49 +36,48 @@ public class VaseBlock extends Block implements SimpleWaterloggedBlock {
         super(BlockBehaviour.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.GLASS));
         this.registerDefaultState(this.getStateDefinition().any().setValue(VASES, 1).setValue(WATERLOGGED, false));
     }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(VASES, WATERLOGGED);
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext p_196258_1_) {
-        BlockState blockstate = p_196258_1_.getLevel().getBlockState(p_196258_1_.getClickedPos());
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        BlockState blockstate = ctx.getLevel().getBlockState(ctx.getClickedPos());
         if (blockstate.is(this)) {
             return blockstate.setValue(VASES, Integer.valueOf(Math.min(4, blockstate.getValue(VASES) + 1)));
         } else {
-            FluidState fluidstate = p_196258_1_.getLevel().getFluidState(p_196258_1_.getClickedPos());
+            FluidState fluidstate = ctx.getLevel().getFluidState(ctx.getClickedPos());
             boolean flag = fluidstate.getType() == Fluids.WATER;
-            return super.getStateForPlacement(p_196258_1_).setValue(WATERLOGGED, Boolean.valueOf(flag));
+            return super.getStateForPlacement(ctx).setValue(WATERLOGGED, Boolean.valueOf(flag));
         }
     }
 
-
-
+    @Override
     public FluidState getFluidState(BlockState state) {
-        return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public boolean canBeReplaced(BlockState p_152814_, BlockPlaceContext p_152815_) {
-        return !p_152815_.isSecondaryUseActive() && p_152815_.getItemInHand().getItem() == this.asItem() && p_152814_.getValue(VASES) < 4 ? true : super.canBeReplaced(p_152814_, p_152815_);
+    @Override
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext ctx) {
+        return !ctx.isSecondaryUseActive() && ctx.getItemInHand().getItem() == this.asItem() && state.getValue(VASES) < 4 ? true : super.canBeReplaced(state, ctx);
     }
 
-
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter p_220071_2_, BlockPos p_220071_3_, CollisionContext p_220071_4_) {
-        switch(state.getValue(VASES)) {
-            case 1:
-            default:
-                return VASE_SHAPE_ONE;
-            case 2:
-                return VASE_SHAPE_TWO;
-            case 3:
-                return VASE_SHAPE_THREE;
-            case 4:
-                return VASE_SHAPE_FOUR;
-        }
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return switch(state.getValue(VASES)) {
+            case 2 -> VASE_SHAPE_TWO;
+            case 3 -> VASE_SHAPE_THREE;
+            case 4 -> VASE_SHAPE_FOUR;
+            default -> VASE_SHAPE_ONE;
+        };
     }
 
-    public boolean canSurvive(BlockState p_152829_, LevelReader p_152830_, BlockPos p_152831_) {
-        return Block.canSupportCenter(p_152830_, p_152831_.below(), Direction.UP);
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return Block.canSupportCenter(level, pos.below(), Direction.UP);
     }
 
     static {

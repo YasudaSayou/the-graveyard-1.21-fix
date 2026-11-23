@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -20,30 +21,30 @@ import java.util.function.Supplier;
 public class TGBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TheGraveyard.MOD_ID);
 
-    public static final DeferredBlock<Block> TG_ROOTED_DIRT = register("tg_rooted_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT).lootFrom(() -> Blocks.ROOTED_DIRT)));
-    public static final DeferredBlock<Block> TG_TUFF = register("tg_tuff", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF).lootFrom(() -> Blocks.TUFF)));
-    public static final DeferredBlock<TGMossBlock> TG_MOSS_BLOCK = register("tg_moss_block", () -> new TGMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).lootFrom(() -> Blocks.MOSS_BLOCK)));
-    public static final DeferredBlock<TGDeepslateBlock> TG_DEEPSLATE = register("tg_deepslate", () -> new TGDeepslateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).lootFrom(() -> Blocks.DEEPSLATE)));
+    public static final DeferredBlock<Block> TG_ROOTED_DIRT = register("tg_rooted_dirt", () -> new TGRootedDirtBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT).lootFrom(() -> Blocks.ROOTED_DIRT)));
+    public static final DeferredBlock<Block> TG_TUFF = register("tg_tuff", () -> new TGBlock(Blocks.TUFF, BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF).lootFrom(() -> Blocks.TUFF)));
+    public static final DeferredBlock<Block> TG_MOSS_BLOCK = register("tg_moss_block", () -> new TGMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).lootFrom(() -> Blocks.MOSS_BLOCK)));
+    public static final DeferredBlock<Block> TG_DEEPSLATE = register("tg_deepslate", () -> new TGDeepslateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).lootFrom(() -> Blocks.DEEPSLATE)));
 
     // helper blocks that get don't get replaced on world generation, generate ores or generate trees on
-    public static final DeferredBlock<TGGrassBlock> TG_GRASS_BLOCK = register("tg_grass_block", () -> new TGGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).lootFrom(() -> Blocks.GRASS_BLOCK)));
-    public static final DeferredBlock<TGStoneBlock> TG_DIRT = register("tg_dirt", () -> new TGStoneBlock(() -> Blocks.DIRT, BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT).lootFrom(() -> Blocks.DIRT)));
-    public static final DeferredBlock<TGStoneBlock> TG_COARSE_DIRT = register("tg_coarse_dirt", () -> new TGStoneBlock(() -> Blocks.COARSE_DIRT, BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT).lootFrom(() -> Blocks.COARSE_DIRT)));
-    public static final DeferredBlock<TGStoneBlock> TG_ANDESITE = register("tg_andesite", () -> new TGStoneBlock(() -> Blocks.ANDESITE, BlockBehaviour.Properties.ofFullCopy(Blocks.ANDESITE).lootFrom(() -> Blocks.ANDESITE)));
-    public static final DeferredBlock<TGStoneBlock> TG_GRANITE = register("tg_granite", () -> new TGStoneBlock(() -> Blocks.GRANITE, BlockBehaviour.Properties.ofFullCopy(Blocks.GRANITE).lootFrom(() -> Blocks.GRANITE)));
-    public static final DeferredBlock<TGStoneBlock> TG_DIORITE = register("tg_diorite", () -> new TGStoneBlock(() -> Blocks.DIORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.DIORITE).lootFrom(() -> Blocks.DIORITE)));
-    public static final DeferredBlock<TGStoneBlock> TG_STONE = register("tg_stone", () -> new TGStoneBlock(() -> Blocks.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lootFrom(() -> Blocks.STONE)));
-    public static final DeferredBlock<TGStoneBlock> TG_PODZOL = register("tg_podzol", () -> new TGStoneBlock(() -> Blocks.PODZOL, BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL).lootFrom(() -> Blocks.PODZOL)));
+    public static final DeferredBlock<Block> TG_GRASS_BLOCK = register("tg_grass_block", () -> new TGGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).lootFrom(() -> Blocks.GRASS_BLOCK)));
+    public static final DeferredBlock<Block> TG_DIRT = register("tg_dirt", () -> new TGBlock(Blocks.DIRT, BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT).lootFrom(() -> Blocks.DIRT)));
+    public static final DeferredBlock<Block> TG_COARSE_DIRT = register("tg_coarse_dirt", () -> new TGBlock(Blocks.COARSE_DIRT, BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT).lootFrom(() -> Blocks.COARSE_DIRT)));
+    public static final DeferredBlock<Block> TG_ANDESITE = register("tg_andesite", () -> new TGBlock(Blocks.ANDESITE, BlockBehaviour.Properties.ofFullCopy(Blocks.ANDESITE).lootFrom(() -> Blocks.ANDESITE)));
+    public static final DeferredBlock<Block> TG_GRANITE = register("tg_granite", () -> new TGBlock(Blocks.GRANITE, BlockBehaviour.Properties.ofFullCopy(Blocks.GRANITE).lootFrom(() -> Blocks.GRANITE)));
+    public static final DeferredBlock<Block> TG_DIORITE = register("tg_diorite", () -> new TGBlock(Blocks.DIORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.DIORITE).lootFrom(() -> Blocks.DIORITE)));
+    public static final DeferredBlock<Block> TG_STONE = register("tg_stone", () -> new TGBlock(Blocks.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lootFrom(() -> Blocks.STONE)));
+    public static final DeferredBlock<Block> TG_PODZOL = register("tg_podzol", () -> new TGBlock(Blocks.PODZOL, BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL).lootFrom(() -> Blocks.PODZOL)));
 
 
-    public static final DeferredBlock<DarkIronBars> DARK_IRON_BARS = register("dark_iron_bars", () -> new DarkIronBars(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion()));
+    public static final DeferredBlock<Block> DARK_IRON_BARS = register("dark_iron_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS)));
     public static final DeferredBlock<BrazierBlock> SOUL_FIRE_BRAZIER = register("soul_fire_brazier", () -> new BrazierBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().lightLevel(BrazierBlock.STATE_TO_LUMINANCE).sound(SoundType.METAL), ParticleTypes.SOUL_FIRE_FLAME));
     public static final DeferredBlock<BrazierBlock> FIRE_BRAZIER = register("fire_brazier", () -> new BrazierBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().lightLevel(BrazierBlock.STATE_TO_LUMINANCE).sound(SoundType.METAL), ParticleTypes.FLAME));
     public static final DeferredBlock<PedestalBlock> PEDESTAL = register("pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.DEEPSLATE)));
     public static final DeferredBlock<CandleHolderBlock> CANDLE_HOLDER = register("candle_holder", () -> new CandleHolderBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().sound(SoundType.METAL)));
-    public static final DeferredBlock<TGTrapDoorBlock> DARK_IRON_TRAPDOOR = register("dark_iron_trapdoor", () -> new TGTrapDoorBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
-    public static final DeferredBlock<TGDoorBlock> DARK_IRON_DOOR = register("dark_iron_door", () -> new TGDoorBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
-    public static final DeferredBlock<Block> DARK_IRON_BLOCK = register("dark_iron_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> DARK_IRON_TRAPDOOR = register("dark_iron_trapdoor", () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_TRAPDOOR)));
+    public static final DeferredBlock<Block> DARK_IRON_DOOR = registerDoubleBlockItem("dark_iron_door", () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_DOOR)));
+    public static final DeferredBlock<Block> DARK_IRON_BLOCK = register("dark_iron_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
     public static final DeferredBlock<BoneDisplayBlock> SKULL_WITH_RIB_CAGE = register("skull_with_rib_cage", BoneDisplayBlock::new);
     public static final DeferredBlock<BoneDisplayBlock> LEANING_SKELETON = register("leaning_skeleton", BoneDisplayBlock::new);
     public static final DeferredBlock<BoneDisplayBlock> SKULL_PILE = register("skull_pile", BoneDisplayBlock::new);
@@ -160,6 +161,12 @@ public class TGBlocks {
     public static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> block) {
         DeferredBlock<T> ret = BLOCKS.register(name, block);
         TGItems.ITEMS.register(name, () -> new BlockItem(ret.get(), new Item.Properties()));
+        return ret;
+    }
+
+    public static <T extends Block> DeferredBlock<T> registerDoubleBlockItem(String name, Supplier<T> block) {
+        DeferredBlock<T> ret = BLOCKS.register(name, block);
+        TGItems.ITEMS.register(name, () -> new DoubleHighBlockItem(ret.get(), new Item.Properties()));
         return ret;
     }
 
