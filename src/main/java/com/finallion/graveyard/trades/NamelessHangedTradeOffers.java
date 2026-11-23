@@ -1,6 +1,6 @@
 package com.finallion.graveyard.trades;
 
-import com.finallion.graveyard.init.TGItems;
+import com.finallion.graveyard.init.*;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -73,9 +73,9 @@ public class NamelessHangedTradeOffers {
                         new SellEnchantedToolFactory(Items.IRON_LEGGINGS, 12, 1, 1, 1),
                         new SellEnchantedToolFactory(Items.IRON_SWORD, 12, 1, 1, 1),
                         new SellEnchantedToolFactory(Items.IRON_AXE, 12, 1, 1, 1),
-                        new SellItemFactory(TGItems.UPPER_BONE_STAFF.get(), 64, 1, 1, 1),
-                        new SellItemFactory(TGItems.LOWER_BONE_STAFF.get(), 64, 1, 1, 1),
-                        new SellItemFactory(TGItems.MIDDLE_BONE_STAFF.get(), 64, 1, 1, 1),
+                        new SellItemFactory(TGBlocks.UPPER_BONE_STAFF.get(), 64, 1, 1, 1),
+                        new SellItemFactory(TGBlocks.LOWER_BONE_STAFF.get(), 64, 1, 1, 1),
+                        new SellItemFactory(TGBlocks.MIDDLE_BONE_STAFF.get(), 64, 1, 1, 1),
                         new SellItemFactory(Items.WITHER_SKELETON_SKULL, 48, 1, 1, 1),
                         new SellItemFactory(Items.CHAIN, 3, 1, 12, 1),
                         new SellItemFactory(Items.COBWEB, 2, 1, 12, 1),
@@ -97,11 +97,11 @@ public class NamelessHangedTradeOffers {
                         new SellItemFactory(Items.NETHER_BRICK, 1, 1, 24, 1),
                         new SellItemFactory(Items.POISONOUS_POTATO, 10, 1, 1, 1),
                         new SellItemFactory(TGItems.DARK_IRON_INGOT.get(), 4, 1, 6, 1),
-                        new SellItemFactory(TGItems.SOUL_FIRE_BRAZIER.get(), 6, 1, 4, 1),
-                        new SellItemFactory(TGItems.FIRE_BRAZIER.get(), 6, 1, 4, 1),
-                        new SellItemFactory(TGItems.PEDESTAL.get(), 6, 1, 4, 1),
-                        new SellItemFactory(TGItems.CANDLE_HOLDER.get(), 6, 1, 4, 1),
-                        new SellItemFactory(TGItems.OSSUARY.get(), 6, 1, 1, 1),
+                        new SellItemFactory(TGBlocks.SOUL_FIRE_BRAZIER.get(), 6, 1, 4, 1),
+                        new SellItemFactory(TGBlocks.FIRE_BRAZIER.get(), 6, 1, 4, 1),
+                        new SellItemFactory(TGBlocks.PEDESTAL.get(), 6, 1, 4, 1),
+                        new SellItemFactory(TGBlocks.CANDLE_HOLDER.get(), 6, 1, 4, 1),
+                        new SellItemFactory(TGBlocks.OSSUARY.get(), 6, 1, 1, 1),
                         new SellItemFactory(Items.MOSS_BLOCK, 10, 32, 6, 1)}
         ));
     }
