@@ -32,7 +32,7 @@ public class TGItems {
     public static final Supplier<Item> CORRUPTED_PILLAGER_SPAWN_EGG = ITEMS.register("corrupted_pillager_spawn_egg", () -> new DeferredSpawnEggItem(TGEntities.CORRUPTED_PILLAGER, 7567737, 4924973, (new Item.Properties())));
     public static final Supplier<Item> CORRUPTED_VINDICATOR_SPAWN_EGG = ITEMS.register("corrupted_vindicator_spawn_egg", () -> new DeferredSpawnEggItem(TGEntities.CORRUPTED_VINDICATOR, 7567737, 2380632, (new Item.Properties())));
 
-    public static final Supplier<Item> BONE_DAGGER = ITEMS.register("bone_dagger", () -> new DaggerItem(Tiers.STONE, new Item.Properties().attributes(DaggerItem.createAttributes(Tiers.STONE, 4 - Tiers.STONE.getAttackDamageBonus(), -2.0F))));
+    public static final Supplier<Item> BONE_DAGGER = ITEMS.register("bone_dagger", () -> new DaggerItem(Tiers.STONE, new Item.Properties().attributes(DaggerItem.createAttributes(Tiers.STONE, 3, -2.0F))));
     public static final Supplier<Item> DARK_IRON_INGOT = ITEMS.register("dark_iron_ingot", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> CORRUPTION = ITEMS.register("corruption", () -> new Item(new Item.Properties()));
 

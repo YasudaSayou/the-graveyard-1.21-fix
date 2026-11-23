@@ -1,25 +1,20 @@
 package com.finallion.graveyard.entities;
 
 import com.finallion.graveyard.TheGraveyard;
-import com.finallion.graveyard.init.TGAdvancements;
 import com.finallion.graveyard.init.TGSounds;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 public class AcolyteEntity extends CorruptedIllager {
 
@@ -53,17 +48,5 @@ public class AcolyteEntity extends CorruptedIllager {
     @Override
     public float getVoicePitch() {
         return 0.75F;
-    }
-
-
-    @Override
-    public void createWitherRose(@Nullable LivingEntity adversary) {
-        if (adversary instanceof ServerPlayer player) {
-            ItemStack mainHandItem = player.getItemInHand(InteractionHand.MAIN_HAND);
-            if (mainHandItem.getItem() == BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(TheGraveyard.MOD_ID, "bone_dagger"))) {
-            TGAdvancements.KILLED_BY_BONE_DAGGER.get().trigger(player);
-        }
-        }
-        super.setLastHurtByMob(adversary);
     }
 }

@@ -9,11 +9,7 @@
     },
     "description": {
       "translate": "advancements.graveyard.find_skeleton.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "skeleton": {
@@ -38,10 +34,5 @@
         ]
       }
     }
-  },
-  "requirements": [
-    [
-      "skeleton"
-    ]
-  ]
+  }
 }

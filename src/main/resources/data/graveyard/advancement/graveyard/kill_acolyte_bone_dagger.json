@@ -9,23 +9,32 @@
     },
     "description": {
       "translate": "advancements.graveyard.kill_acolyte_bone_dagger.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "rewards": {
     "experience": 50
   },
   "criteria": {
     "killed_by_bone_dagger": {
-      "trigger": "graveyard:killed_by_bone_dagger"
+      "conditions": {
+        "entity": [
+          {
+            "condition": "entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "graveyard:acolyte"
+            }
+          }
+        ],
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "items": "graveyard:bone_dagger"
+            }
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
     }
-  },
-  "requirements": [
-    [
-      "killed_by_bone_dagger"
-    ]
-  ]
+  }
 }

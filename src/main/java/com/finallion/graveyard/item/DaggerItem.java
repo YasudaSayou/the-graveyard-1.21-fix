@@ -3,15 +3,10 @@ package com.finallion.graveyard.item;
 
 import com.finallion.graveyard.config.GraveyardConfig;
 import com.finallion.graveyard.init.TGItems;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.TintedGlassBlock;
-import net.minecraft.world.level.block.StainedGlassBlock;
-import net.minecraft.world.level.block.StainedGlassPaneBlock;
-import net.minecraft.world.level.block.state.BlockState;
 
 public class DaggerItem extends SwordItem {
 
@@ -19,12 +14,9 @@ public class DaggerItem extends SwordItem {
       super(material, settings);
    }
 
-   public float getDestroySpeed(ItemStack stack, BlockState state) {
-      if (state.is(Blocks.COBWEB) || state.getBlock() instanceof TintedGlassBlock || state.getBlock() instanceof StainedGlassBlock || state.getBlock() instanceof StainedGlassPaneBlock) {
-         return 30.0F;
-      } else {
-         return state.is(BlockTags.SWORD_EFFICIENT) ? 1.5F : 1.0F;
-      }
+   @Override
+   public boolean isValidRepairItem(ItemStack stack, ItemStack material) {
+      return material.is(Items.BONE);
    }
 
    @Override
@@ -35,13 +27,8 @@ public class DaggerItem extends SwordItem {
             float blood = VialOfBlood.getBlood(stackOffhand);
             VialOfBlood.setBlood(stackOffhand, blood + 0.1F);
          } else if (stackOffhand.is(Items.GLASS_BOTTLE)) {
-            stackOffhand.shrink(1);
-            ItemStack vial = new ItemStack(TGItems.VIAL_OF_BLOOD.get());
-            if (stackOffhand.isEmpty()) {
-               playerEntity.getInventory().add(40, vial);
-            } else {
-               playerEntity.getInventory().add(vial);
-            }
+            ItemStack resultStack = ItemUtils.createFilledResult(stackOffhand, playerEntity, TGItems.VIAL_OF_BLOOD.get().getDefaultInstance());
+            playerEntity.setItemInHand(InteractionHand.OFF_HAND, resultStack);
          }
       }
       return super.hurtEnemy(stack, target, attacker);

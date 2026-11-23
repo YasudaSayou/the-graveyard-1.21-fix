@@ -9,11 +9,7 @@
     },
     "description": {
       "translate": "advancements.graveyard.large_graveyard.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "large_graveyard": {
@@ -32,10 +28,5 @@
       },
       "trigger": "minecraft:location"
     }
-  },
-  "requirements": [
-    [
-      "large_graveyard"
-    ]
-  ]
+  }
 }

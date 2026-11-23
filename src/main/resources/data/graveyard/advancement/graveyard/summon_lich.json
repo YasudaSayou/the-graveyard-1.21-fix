@@ -17,23 +17,14 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.graveyard.summon_lich.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "id": "minecraft:spawner"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.graveyard.summon_lich.title"
     }
-  },
-  "requirements": [
-    [
-      "summoned"
-    ]
-  ]
+  }
 }

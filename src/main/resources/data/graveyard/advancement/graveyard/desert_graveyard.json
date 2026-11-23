@@ -9,11 +9,7 @@
     },
     "description": {
       "translate": "advancements.graveyard.desert_graveyard.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
+    }
   },
   "criteria": {
     "small_desert_graveyard": {
@@ -32,10 +28,5 @@
       },
       "trigger": "minecraft:location"
     }
-  },
-  "requirements": [
-    [
-      "small_desert_graveyard"
-    ]
-  ]
+  }
 }
