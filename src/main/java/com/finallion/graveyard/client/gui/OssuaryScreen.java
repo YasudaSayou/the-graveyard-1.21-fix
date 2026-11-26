@@ -1,6 +1,6 @@
 package com.finallion.graveyard.client.gui;
 
-import com.finallion.graveyard.recipe.OssuaryRecipe;
+import com.finallion.graveyard.recipe.OssuaryCarvingRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -70,7 +70,7 @@ public class OssuaryScreen extends AbstractContainerScreen<OssuaryMenu> {
             int i = this.leftPos + RECIPES_X;
             int j = this.topPos + RECIPES_Y;
             int k = this.startIndex + SCROLLER_WIDTH;
-            List<RecipeHolder<OssuaryRecipe>> list = this.menu.getRecipes();
+            List<RecipeHolder<OssuaryCarvingRecipe>> list = this.menu.getRecipes();
 
             for (int l = this.startIndex; l < k && l < this.menu.getNumRecipes(); ++l) {
                 int i1 = l - this.startIndex;
@@ -105,7 +105,7 @@ public class OssuaryScreen extends AbstractContainerScreen<OssuaryMenu> {
 
     // Adapted from StonecutterScreen#renderRecipes
     private void renderRecipes(GuiGraphics guiGraphics, int x, int y, int startIndex) {
-        List<RecipeHolder<OssuaryRecipe>> list = this.menu.getRecipes();
+        List<RecipeHolder<OssuaryCarvingRecipe>> list = this.menu.getRecipes();
 
         for (int i = this.startIndex; i < startIndex && i < this.menu.getNumRecipes(); ++i) {
             int j = i - this.startIndex;
@@ -194,4 +194,3 @@ public class OssuaryScreen extends AbstractContainerScreen<OssuaryMenu> {
         }
     }
 }
-

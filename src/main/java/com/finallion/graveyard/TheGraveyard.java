@@ -3,7 +3,6 @@ package com.finallion.graveyard;
 import com.finallion.graveyard.config.GraveyardConfig;
 import com.finallion.graveyard.init.*;
 import com.finallion.graveyard.item.VialOfBlood;
-import com.finallion.graveyard.recipe.TGRecipeTypes;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -11,6 +10,8 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+
+import java.util.Locale;
 
 @Mod("graveyard")
 public class TheGraveyard {
@@ -49,5 +50,9 @@ public class TheGraveyard {
                         return 0.0F;
                     });
         });
+    }
+
+    public static ResourceLocation prefix(String name) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name.toLowerCase(Locale.ROOT));
     }
 }

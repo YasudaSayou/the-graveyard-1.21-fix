@@ -1,9 +1,7 @@
 package com.finallion.graveyard.client.gui;
 
-import com.finallion.graveyard.init.TGBlocks;
-import com.finallion.graveyard.init.TGScreens;
-import com.finallion.graveyard.recipe.OssuaryRecipe;
-import com.finallion.graveyard.recipe.TGRecipeTypes;
+import com.finallion.graveyard.init.*;
+import com.finallion.graveyard.recipe.OssuaryCarvingRecipe;
 import com.google.common.collect.Lists;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -31,7 +29,7 @@ public class OssuaryMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;
-    private List<RecipeHolder<OssuaryRecipe>> recipes = Lists.newArrayList();
+    private List<RecipeHolder<OssuaryCarvingRecipe>> recipes = Lists.newArrayList();
     private ItemStack input = ItemStack.EMPTY;
     long lastSoundTime;
     final Slot inputSlot;
@@ -101,7 +99,7 @@ public class OssuaryMenu extends AbstractContainerMenu {
         return this.selectedRecipeIndex.get();
     }
 
-    public List<RecipeHolder<OssuaryRecipe>> getRecipes() {
+    public List<RecipeHolder<OssuaryCarvingRecipe>> getRecipes() {
         return this.recipes;
     }
 
@@ -156,7 +154,7 @@ public class OssuaryMenu extends AbstractContainerMenu {
 
     void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
-            RecipeHolder<OssuaryRecipe> carvingRecipe = this.recipes.get(this.selectedRecipeIndex.get());
+            RecipeHolder<OssuaryCarvingRecipe> carvingRecipe = this.recipes.get(this.selectedRecipeIndex.get());
             ItemStack itemStack = carvingRecipe.value().assemble(createRecipeInput(this.container), this.level.registryAccess());
             if (itemStack.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed(carvingRecipe);
@@ -216,7 +214,7 @@ public class OssuaryMenu extends AbstractContainerMenu {
             }
 
             if (itemstack1.isEmpty()) {
-                slot.set(ItemStack.EMPTY);
+                slot.setByPlayer(ItemStack.EMPTY);
             }
 
             slot.setChanged();
