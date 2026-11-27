@@ -40,24 +40,19 @@ public class SkeletonCreeper extends Creeper {
 
     @Override
     protected void dropCustomDeathLoot(ServerLevel level, DamageSource damageSource, boolean recentlyHit) {
-        super.dropCustomDeathLoot(level, damageSource, recentlyHit);
         Entity entity = damageSource.getEntity();
-        if (entity != this && entity instanceof Creeper) {
-            Creeper creeper = (Creeper)entity;
-            if (creeper.isIgnited() && random.nextBoolean()) {
-                this.spawnAtLocation(TGBlocks.CREEPER_SKELETON.get().asItem());
-            }
+        if (entity != this && entity instanceof Creeper creeper && creeper.canDropMobsSkull() && random.nextBoolean()) {
+            creeper.increaseDroppedSkulls();
+            this.spawnAtLocation(TGBlocks.CREEPER_SKELETON.get().asItem());
         } else {
             super.dropCustomDeathLoot(level, damageSource, recentlyHit);
         }
 
     }
 
-
-
-    public void explode() {
+    @Override
+    public void explodeCreeper() {
         if (!this.level().isClientSide) {
-            Level.ExplosionInteraction explosion$mode = Level.ExplosionInteraction.NONE;
             float f = this.isPowered() ? 2.0F : 1.0F;
 
             if (canStart()) {
@@ -66,9 +61,10 @@ public class SkeletonCreeper extends Creeper {
             }
 
             this.dead = true;
-            this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, explosion$mode);
-            this.discard();
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, Level.ExplosionInteraction.NONE);
             this.spawnLingeringCloud();
+            this.triggerOnDeathMobEffects(Entity.RemovalReason.KILLED);
+            this.discard();
         }
 
     }
